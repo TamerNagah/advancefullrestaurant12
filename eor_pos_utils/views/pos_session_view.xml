@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_session_inherit_view_form" model="ir.ui.view">
+        <field name="name">pos.session.view.form.inherit</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='statement_ids']" position="after">
+                <separator string="Abono a débitos"/>
+                <field name="payment_lines">
+                    <tree string="Pagos" default_order="journal_id">
+                        <field name="name"/>
+                        <field name="partner_id" />
+                        <field name="amount" sum="Total"/>
+                        <field name="journal_id" />
+                    </tree>
+                </field>
+                <separator string="Total Abonos a débito"/>
+                <field name="abono_total_debito" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
